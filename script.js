@@ -1,23 +1,23 @@
 const nxtBtn = document.querySelectorAll('.next-btn');
 const preBtn = document.querySelectorAll('.pre-btn');
 const slides = document.querySelectorAll('.banner');
+const container = document.querySelector('[data-container]');
 const menuBtn = document.querySelectorAll('.menu');
-const menuOverlay = document.querySelector('.menu-overlay');
+const menuOverlay = document.querySelector('.menu-overlay-hidden');
 
 
 let i = 0
 
-console.log(slides)
-
 function nextSlide(){
-    slides[i].classList.remove('active');
+    
     i=(i+1)%slides.length;
-    slides[i].classList.add('active')
+    // slides[i].style.transform=`translateY(${-100*i}%)`; 
+    container.style.setProperty('--current-slide',i)
 }
 function prevSlide(){
-    slides[i].classList.remove('active');
     i= (i-1 + slides.length) % slides.length;
-    slides[i].classList.add('active');
+    container.style.setProperty('--current-slide',i)
+
 }
 
 slides.forEach((item, i) => {
@@ -27,14 +27,8 @@ slides.forEach((item, i) => {
 
 
 function toggleNav(){
-
-    // menuOverlay.classList.toggle('menu-active');
-    menuOverlay.classList.toggle('overlay-slide-right');
-    console.log(menuOverlay.classList)
-
+    menuOverlay.classList.toggle('menu-overlay-display');
 }
-
-// menuBtn.addEventListener('click',toggleNav)
 
 slides.forEach((item, i) => {
     nxtBtn[i].addEventListener('click', nextSlide)

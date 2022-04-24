@@ -9,6 +9,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  --current-slide:0;
 }
 
 .banner {
@@ -16,58 +17,47 @@
   height: 100vh;
   background-size: cover;
   background-position: center;
-  display: none;
+  transform: translateY(calc(-100% * var(--current-slide)));
+  transition: transform 0.5s;  
 }
 
-.active{ 
-  display: block;
-}
-
-.menu-overlay {
+.menu-overlay-hidden {
   background-color: black;
   position: absolute;
-  left: 50%;
   bottom: 0;
   font-size: 35px;
   text-decoration: none;
-  transform: translate(-50%,100%);
-  transition: all 0.5s ease-in;
+  transform: translateY(100%);
+  transition: all 0.5s ease-out;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   text-align: center;
 }
 
-.overlay-slide-right {
+.menu-overlay-display {
   transition: all 0.5s ease-in;
-  transform: translate(0,0);
-  width: 100%;
-  height: 100vh;
+  transform: translateY(0);
   border-radius: 0%;
   text-align: left;
-  bottom: 0;
-  left: 0;
 }
 
-.menu-overlay ul {
+.menu-overlay-hidden ul {
   margin-top: 5rem;
   margin-left: 5rem;
 }
 
-.menu-overlay ul li {
+.menu-overlay-hidden ul li {
   list-style: none;
   margin: 0 20px;
   position: relative;
 }
 
-.menu-overlay ul li a {
+.menu-overlay-hidden ul li a {
   text-decoration: none;
   color: #FFFFFF;
 }
 
-.menu-active{
-  display: block; 
-}
 
 .button {
   position: absolute;
